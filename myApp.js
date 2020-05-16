@@ -5,6 +5,13 @@
 
 var express = require('express'); // Do Not Edit
 var app = express();              // Do Not Edit
+var helmet = require('helmet');
+
+app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
+app.use(helmet.frameguard({'action': 'deny'}));
+app.use(helmet.xssFilter());
+app.use(helmet.noSniff());
+app.use(helmet.ieNoOpen());
 
 // ----
 
@@ -114,6 +121,7 @@ var app = express();              // Do Not Edit
 // policy we will intercept and restore the header, after inspecting it for testing.
 
 var ninetyDaysInSeconds = 90*24*60*60;
+
 
 
 //**Note**:
